@@ -70,10 +70,9 @@ pip install py2app
 ```
 python setup.py py2app -O2 -S --semi-standalone
 ```
-This builds a relatively small app that depends on having python installed on device, flags:
+This builds a relatively small app that depends on having python installed on machine, flags:
   * -O2 : optimize = 2.
-  * --semi-standalone : don't copy the python framework into the app.
-Build on mac
+  * --semi-standalone : don't copy the python framework into the app. Removing this flag will result in a standalone app that can run on any machine (of the same OS), but the app's size will be large... very large.
 
 ## 🎠 Usage
 <details>

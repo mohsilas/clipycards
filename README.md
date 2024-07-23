@@ -12,7 +12,7 @@
 
 
 > A tiny app that automatically creates flashcards from the clipbaord using GPT.
-> <p>Wanna turn <mark> this </mark> into a flashcard? Control+C... Done.</p>
+> <p>Wanna turn <mark>this</mark> into a flashcard? Control+C... Done.</p>
 
 # 📖 Table of Contents
 * [Intro](#-intro)

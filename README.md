@@ -6,10 +6,11 @@
 <div align="center">
   <img/ src="https://github.com/user-attachments/assets/480ddebe-2404-4a67-abe6-e3768e8224ee" height="25">&nbsp;&nbsp;
   <img/ src="https://github.com/user-attachments/assets/69c67088-dcaf-4074-aa70-8fc42cb5f018" height="25">&nbsp;&nbsp;
-  <img/ src="https://github.com/user-attachments/assets/fd245e57-d5dc-42fc-a748-6e5f6864a872" height="25">&nbsp;&nbsp;
+  <img/ src="https://github.com/user-attachments/assets/beef504c-1753-47f2-93b6-a266ab265090" height="25">&nbsp;&nbsp;
   <img/ src="https://github.com/user-attachments/assets/80d8a92d-04bb-4829-9073-85232107e4a3" height="25">
 </div>
 <br>
+
 
 > A tiny app that automatically creates flashcards from the clipbaord using GPT.
 
@@ -18,7 +19,7 @@
 * Installation
 * Build
 * Usage
-* Config
+* [Config](https://github.com/mohsilas/clipycards/edit/main/README.md#-config-)
 * Themes
 * Documentation
 * License
@@ -36,11 +37,55 @@ It is a truth universally acknowledged, at least among med students, that creati
 ## 🛠️ Installation 🔝
 
 ## 🧱 Build 🔝
+After cloning or downloading the src file, there're many ways to build the python app. Here we use py2app/py2exe.
+### MacOS
+1. install py2app with pip
+```
+pip install py2app
+```
+2. navigate to the src file
+3. run the builds command
+```
+python setup.py py2app -O2 -S --semi-standalone
+```
+This build a relatively small app that depends on python, flags:
+  * -O2 : optimize = 2.
+  * --semi-standalone : don't copy the python framework into the app.
+Build on mac
 
 ## 🎠 Usage 🔝
 
 ## ⚓ Config 🔝
+You can configure clipycards using a config file located in your home directory. This is the default config file:
+```json
+{
+    "about": "version: 1.0 | dev: mohsilas | default themes: light, dark, rose-pine | need help with this config, or creating themes? visit clipycards.com",
+    "key": "<your-api-key-is-stored-here!",
+    "role": "system",
+    "main-model": "gpt-3.5-turbo",
+    "sys_prompt": "you are a system that generates Q&As from provided info. Here is a general idea about the info you will be provided:<br><study_topic_context><br>Here're some pervious interactions to improve your responses:<br><similar_context><br>keeping with the previous context, turn the following info into a Q&A in the exact format of \"question? | answer\". If multiple Q&As were generated, separate them by an empty line.",
+    "temp": 1,
+    "top_p": 1,
+    "context_length": 3,
+    "backend_thread_clipboard_queue_timeout": 4,
+    "frontend_cards_export_format_separator": " | ",
+    "theme": "rose-pine",
+    "internet_ping_server": ["8.8.8.8", 53]
+}
+```
+Now, let's break it down :).
 
+* key: your OpenAI API key is stored here, I know it's practice to store it in an env, but if an adversary has access to your home dir, an API key is the least of your worries.
+* role: a model paramater that you shouldn't touch :)
+* main-model: the underlying AI that generates the cards' text.
+* sys_prompt: the prompt used to generate the cards, <br> is a line break.  <study_topic_context> is a general study context,  <similar_context> is replaced with the relevant context from previous cards.
+* temp: A value between 0.2 and 0.8 can be effective. Lower values (e.g., 0.2) produce more focused and deterministic responses, while higher values (e.g., 0.8) allow for more randomness. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
+* top_p: Higher values (e.g., 0.9) make the model consider a broader range of possibilities, while lower values (e.g., 0.3) make it more selective. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
+*  context_length: number of context chunks (previous cards/copied info) used to generate a single card.
+*  backend_thread_clipboard_queue_timeout: for those with some programming experience, this basically makes the backend thread wait n seconds for a new queue (new clipboard data).
+*  frontend_cards_export_format_separator: in accordince with the prompt, allows parsing the cards into a csv format.
+*  theme: there are three default themes / light, dark, rose-pine
+*  internet_ping_server: the IP and port of the internet server clipyCards pings to check connectivity, this one is google's.
 ## 🖌️ Themes 🔝
 
 ## 📘 Documentation

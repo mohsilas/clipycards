@@ -11,7 +11,7 @@
 <br>
 
 
-> A tiny app that automatically creates flashcards from the clipbaord using GPT.
+> A tiny app that automatically creates flashcards from the clipbaord using OpenAI's GPT.
 > <p>Wanna turn <mark>this</mark> into a flashcard? Control+C... Done.</p>
 
 # 📖 Table of Contents
@@ -24,21 +24,44 @@
 * [Documentation](#-documentation)
 * [License](#-license)
 ## 📑 Intro
-It is a truth universally acknowledged, at least among med students, that creating flashcards consumes time. And so, with the advent of AI, it became possible to delegate such a task to a semantically intellegent machine. This however, posed new problems, namely; the price of services, model hallucinations, and the fact that turning your entire lecture sheet into flashcards generates a lot of redundancy.
+It is a truth universally acknowledged, at least among med students, that creating flashcards consumes time. And so, with the advent of AI, it became possible to delegate such a task to a semantically intellegent machine. This however, posed new problems, namely; the price of services, model hallucination, and the fact that turning your entire lecture sheet into flashcards generates some redundant cards.
 
-**Price**: ClipyCards solves the problem of price by allowing you to use your own API key, currently OpenAI's. You can turn the entire Harry Potter series into falshcards (yes, including the last book) with GPT3.5 at $2, or the new 4o-mini at $0.75. You can also use beefier models like GPT4. Oh, and APIs are a per-use charge, not a monthly subscription.
+**Price**: ClipyCards solves the problem of price by allowing you to use your own API key, currently OpenAI's. You can turn the entire Harry Potter series into falshcards (yes, including the last book) with GPT3.5 at $2, or use the new GPT4o-mini at $0.75. You can also use beefier models like GPT4. Oh, and APIs are a charged per use, not a monthly subscription.
 
-**Hallucinations**: ClipyCards uses retrieval augmented generation (RAG), meaning that it keeps the context of your study session and generates cards from and around that context. When you copy a chunk of text, the app feeds this text, along with relevant context from its temporary study session database, into GPT and then retrieves the generated card with its prompt (in case you wanted to regenerate or modify the prompt).
+**Hallucination**: ClipyCards uses retrieval augmented generation (RAG), meaning that it keeps the context of your study session and generates cards from and around that context. When you copy a chunk of text, the app feeds this text, along with relevant context from its temporary study session database, into GPT and then retrieves the generated card with its prompt (in case you wanna regenerate or modify the prompt/context).
 
-**Redundancy**: You can just copy your entire lecture sheet, or copy the parts that needs remembering, thus generating specific cards.
+**Redundancy**: You can just copy your entire lecture sheet, or copy the parts that needs remembering, thus generating super specific cards.
 
-**Don't want flashcards?** You can configure ClipyCards' prompt to generate bulletins, TLDR cards, QA sheets, etc,
+**Don't want flashcards?** You can configure ClipyCards' prompt to generate bulletins, MCQs, Q&A sheets, etc,
 
 ## 🛠️ Installation
-No available releases yet... You'll have to follow the Build/dependancies guide it yourself.
+No available releases yet... You'll have to follow the Build/dependancies guide.
+
 ## 🧱 Build/dependancies
+### for the non-tech people
+* first, make sure you have python installed
+    * open the terminal app (mac) or commandline (cmd, Windows), and type "python" then press enter.
+    * if python is installed you'll read something like:<br>
+      Python 3.x.x Type "help", "copyright", "credits" or "license" for more information. <br>>>>
+    * if it's not, you'll read something like "python doesn't exist" or "command not found". In this case you need to [download python](https://www.python.org/downloads/)
+    * after downloading and installing python, type "python" and press enter.
+    * next step is to exit from python, type "quit()" and then press enter.
+* now you'll need to download some code that the app depends on, follow the next guide (dependancies). You'll need it copy each command, paste it into the terminal or cmd, press enter, and wait for the dependancy to install before moving to the next one.
+* after installing the dependancies, download the source code from this github by clicking on the green button "<> Code", and Download ZIP.
+* last step, after uncompressing the ZIP, is navigating to the src folder and running the app.
+  * to navigate, open the terminal/cmd app and type "cd " (with a space), then drag and drop the src folder inside the clipycards folder into the terminal/cmd window. This will print something like "cd computer/home/path/to/the/src", press enter and move to the next set.
+  * now run the app using python. As written blew (you can copy it)
+```
+python clipycards.py
+```
+* now move on to [Usage](#-usage)
+> [!TIP]
+> navigating via cd + drag&drop src folder, and running the app via python is how you open the app everytime (until you learn a bit more about cmd/terminal then you can use aliases)
+
+> [!IMPORTANT]
+> Your machine's OS might block the app from accessing the clipboard, you can fix this by giving permission from the settings/privacy&security.
 ### dependancies
-You'll need these libs already installed before building the app.
+You'll need these libraries installed before running or building the app.
 * OpenAI (used version 1.30.3)
 ```
 pip install openai
@@ -58,6 +81,13 @@ pip install customtkinter
 * numpy (used version 1.22.0)
 ```
 pip install numpy
+```
+### running from the terminal/cmd
+* after installing the dependencies open your terminal/cmd
+* navigate to the src file
+* run
+```
+python clipycards.py
 ```
 
 ### Building on MacOS/Windows
@@ -101,7 +131,7 @@ Here, I just provided a title.
 <details>
 <summary>2. Want a flashcard? Control+C... Done </summary>
   
-Now you just study, and control+C whatever piece of info you want clipycards to generate a flashcard from. In This case, some info about kidney failure (I'm a medico!).
+Now you just study, and control+C whatever piece of info you want clipycards to generate a flashcard from. In This case, some info about kidney failure.
 
 <img width="932" alt="Screenshot 2024-07-23 at 5 58 16 PM" src="https://github.com/user-attachments/assets/59e83527-119b-4284-8bd0-0da0f221f2c4">
 
@@ -109,10 +139,10 @@ Now you just study, and control+C whatever piece of info you want clipycards to 
 <details>
 <summary> Buttons' manual </summary>
 
-* gear icon: pops up a menu for regenrating, re-prompting, or editing a card.
+* gear icon: pops up a menu for regenrating, re-prompting, editing, or deleting a card.
 * Pause/Resume: pauses the card generation, in case you want to copy something without clipycards turning it into a card.
-* New context: create new context for a new study topic, you can also clear the cards and generate new ones.
-* export: export cards into text or sheet files, which is all you need because most apps (including Anki) can import such formats.
+* New context: creates a new context for a new study topic, you can also clear the cards and generate new ones.
+* Export: export cards into text or sheet files, which is all you need because most apps (including Anki) can import such formats.
 </details>
 
 
@@ -121,7 +151,7 @@ You can configure clipycards using a config file located in your home directory.
   
 ```json
 {
-    "about": "version: 1.0 | dev: mohsilas | default themes: light, dark, rose-pine | need help with this config, or creating themes? visit clipycards.com",
+    "about": "version: 1.0 | dev: mohsilas | default themes: light, dark, rose-pine | need help with this config, or creating themes? visit github.com/mohsilas/clipycards",
     "key": "<your-api-key-is-stored-here!",
     "role": "system",
     "main-model": "gpt-3.5-turbo",
@@ -131,26 +161,26 @@ You can configure clipycards using a config file located in your home directory.
     "context_length": 3,
     "backend_thread_clipboard_queue_timeout": 4,
     "frontend_cards_export_format_separator": " | ",
-    "theme": "rose-pine",
+    "theme": "light",
     "internet_ping_server": ["8.8.8.8", 53]
 }
 ```
 Now, let's break it down :).
 
-* key: your OpenAI API key is stored here, I know it's practice to store it in an env, but if an adversary has access to your home dir, an API key is the least of your worries.
-* role: a model paramater that you shouldn't touch :)
-* main-model: the underlying AI that generates the cards' text. [Models list](https://platform.openai.com/docs/models)
-* sys_prompt: the prompt used to generate the cards, \<br> is a line break.  <study_topic_context> is a general study context,  <similar_context> is replaced with the relevant context from previous cards.
-* temp: A value between 0.2 and 0.8 can be effective. Lower values (e.g., 0.2) produce more focused and deterministic responses, while higher values (e.g., 0.8) allow for more randomness. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
-* top_p: Higher values (e.g., 0.9) make the model consider a broader range of possibilities, while lower values (e.g., 0.3) make it more selective. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
-*  context_length: number of context chunks (previous cards/copied info) used to generate a single card.
-*  backend_thread_clipboard_queue_timeout: for those with some programming experience, this basically makes the backend thread wait n seconds for a new queue (new clipboard data).
-*  frontend_cards_export_format_separator: in accordince with the prompt, allows parsing the cards into a csv format. (i.e. question | answer = column1: question | column2: answer)
-*  theme: there are three default themes (light, dark, rose-pine), you can also create your own theme and insert the path here (e.g. "my\theme\path\mytheme.json").
-*  internet_ping_server: the IP and port of the internet server clipyCards pings to check connectivity, this one is google's.
+* **key:** your OpenAI API key is stored here, I know it's practice to store it in an env, but if an adversary has access to your home dir, an API key is the least of your worries.
+* **role:** a model paramater that you shouldn't touch :)
+* **main-model:** the underlying AI that generates the cards' text. [Models list](https://platform.openai.com/docs/models)
+* **sys_prompt:** the prompt used to generate the cards, \<br> is a line break.  <study_topic_context> is a general study context,  <similar_context> is replaced with the relevant context from previous cards.
+* **temp:** A value between 0.2 and 0.8 can be effective. Lower values (e.g., 0.2) produce more focused and deterministic responses, while higher values (e.g., 0.8) allow for more randomness. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
+* **top_p:** Higher values (e.g., 0.9) make the model consider a broader range of possibilities, while lower values (e.g., 0.3) make it more selective. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
+*  **context_length:** number of context chunks (previous cards/copied info) used to generate a single card.
+*  **backend_thread_clipboard_queue_timeout:** for those with some programming experience, this basically makes the backend thread wait n seconds for a new queue (new clipboard data).
+*  **frontend_cards_export_format_separator:** in accordince with the prompt, allows parsing the cards into a csv format. (i.e. question | answer = column1: question | column2: answer)
+*  **theme:** there are three default themes (light, dark, rose-pine), you can also create your own theme and insert the path here (e.g. "my\theme\path\mytheme.json").
+*  **internet_ping_server:** the IP and port of the internet server clipyCards pings to check connectivity, this one is google's.
 
 > [!TIP]
-> to find your home dir, type this on your terminal/cmd:
+> If you deleted the config file, clipycards will generate a new one and ask you for an API key. Also, to find your home dir, type this on your terminal/cmd:
 ```
 cd ~
 ```

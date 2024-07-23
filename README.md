@@ -280,27 +280,29 @@ This is a fairly tiny app, hence the docs are selective.
   
 The following psudocode represents the general structure of the app.
 ```python
-frontend_clipboard_listener():
+def frontend_clipboard_listener():
   if new_clipboard_data != old_clipboard_data:
     clipboard_queue.push(new_clipboard_data)
     old_clipboard_data = new_clipboard_data
     frontend_clipboard_listener() # I don't actualy use raw recursion, but the concept is the same.
 
-frontend_new_card_generated_listener():
+def frontend_new_card_generated_listener():
   if new_card_generated_queue.has_data():
     gui.update.add_new_card(text=new_card_generated_queue.text)
     frontend_new_card_generated_listener()
 
-backend_start_api_caller_theard():
+def backend_start_api_caller_theard():
   while(thread_is_active.is_set()):
     if clipboard_queue.has_data():
       new_card_generated_queue.push(api.response(request=prompt+queue.get_data()))
 
-main():
+def main():
   frontend_clipboard_listener()
   frontend_newcards_from_api_listener()
   thread = backend_start_api_caller_theard()
   thread.start()
+
+main()
 ```
 </details>
 

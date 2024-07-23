@@ -16,12 +16,12 @@
 # 📖 Table of Contents
 * [Intro](#-intro)
 * Installation
-* Build
-* Usage
+* [Build](#-build)
+* [Usage](#-usage)
 * [Config](#-config)
-* Themes
-* Documentation
-* License
+* [Themes](#-themes)
+* [Documentation](#-documentation)
+* [License](#-license)
 ## 📑 Intro
 It is a truth universally acknowledged, at least among med students, that creating flashcards consumes time. And so, with the advent of AI, it became possible to delegate such a task to a semantically intellegent machine. This however, posed new problems, namely; the price of services, model hallucinations, and the fact that turning your entire lecture sheet into flashcards generates a lot of redundancy.
 

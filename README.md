@@ -177,12 +177,12 @@ To use your own theme, open the config file and replace the default theme with a
 </details>
 
 ## 📘 Documentation
-This is a fairly tiny app, hence the docs are short.
+This is a fairly tiny app, hence the docs are selective.
 ### Docs table
 <details>
 <summary>Overview: how clipycards works</summary>
   
-The following psudocode represent the general structure of the app.
+The following psudocode represents the general structure of the app.
 ```python
 frontend_clipboard_listener():
   if new_clipboard_data != old_clipboard_data:
@@ -231,14 +231,18 @@ There're three classes in the frontend:
 <details>
 <summary>The backend </summary>
   
-The backend uses backend_api_response_get(str)->str to get response from OpenAI's API, or other APIs in the future, as such it is called two functions:
-* backend_card_generate_from_data(str) -> str # this generates the cards according to the sys_prompt
-* backend_study_context_title_generate(str) -> str # this takes in the study context and provides a title
+The backend uses backend_api_response_get(str)->str to get response from OpenAI's API, or other APIs in the future, as such it is called by two functions:
+```python
+backend_card_generate_from_data(str: request, str:study_topic_context) -> [str, str] # this generates the card according to the sys_prompt, and also outputs the context+prompt used
+backend_study_context_title_generate(str: study_topic_context) -> str # this takes in the study context and provides a title
+```
 
 With every API call, the functions responsible for keeping the context are also called (because LLMs don't have memory, so you'd have to feed them context with every API call). These context-keeping funcions use methods from (FAISS library](https://faiss.ai/) and the [OpenAI's text embedding model](https://openai.com/index/introducing-text-and-code-embeddings/).
-* backend_embedding_generate(str) -> embd # embd is a 1x256 np array of 32floats, not a real datatype btw. This one calls the embedding model.
-* backend_embedding_index_db_add(str) # calls backend_embedding_generate() to generate embedding and store it in a FIASS database, and appends the str to embedding_text_db (simple list).
-* back_endembedding_index_db_search_similar(embd) -> list # searches the FAISS database for similar embeddings are outputs a list of their indexes (corrosponds to the indexes of the strings in embedding_text_db).
+```python
+backend_embedding_generate(str: text) -> embd # embd is a 1x256 np array of 32floats, not a real datatype btw. This one calls the embedding model.
+backend_embedding_index_db_add(str: text) -> None # calls backend_embedding_generate() to generate embedding and store it in a FIASS database, and appends the str to embedding_text_db (simple list).
+back_endembedding_index_db_search_similar(embd: text_embedding) -> list # searches the FAISS database for similar embeddings are outputs a list of their indexes (corrosponds to the indexes of the strings in embedding_text_db).
+```
 
 </details>
 

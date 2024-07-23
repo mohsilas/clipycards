@@ -15,15 +15,15 @@
 > A tiny app that automatically creates flashcards from the clipbaord using GPT.
 
 # 📖 Table of Contents
-* [Intro](https://github.com/mohsilas/clipycards/edit/main/README.md#-intro-)
+* [Intro](#-intro)
 * Installation
 * Build
 * Usage
-* [Config](https://github.com/mohsilas/clipycards/edit/main/README.md#-config-)
+* [Config](#-config)
 * Themes
 * Documentation
 * License
-## 📑 Intro 🔝
+## 📑 Intro
 It is a truth universally acknowledged, at least among med students, that creating flashcards consumes time. And so, with the advent of AI, it became possible to delegate such a task to a semantically intellegent machine. This however, posed new problems, namely; the price of services, model hallucinations, and the fact that turning your entire lecture sheet into flashcards generates a lot of redundancy.
 
 **Price**: ClipyCards solves the problem of price by allowing you to use your own API key, currently OpenAI's. You can turn the entire Harry Potter series into falshcards (yes, including the last book) with GPT3.5 at $2, or the new 4o-mini at $0.75. You can also use beefier models like GPT4. Oh, and APIs are a per-use charge, not a monthly subscription.
@@ -34,9 +34,9 @@ It is a truth universally acknowledged, at least among med students, that creati
 
 **Don't want flashcards?** You can configure ClipyCards' prompt to generate bulletins, TLDR cards, QA sheets, etc,
 
-## 🛠️ Installation 🔝
+## 🛠️ Installation
 
-## 🧱 Build 🔝
+## 🧱 Build
 After cloning or downloading the src file, there're many ways to build the python app. Here we use py2app/py2exe.
 ### MacOS
 1. install py2app with pip
@@ -53,10 +53,11 @@ This build a relatively small app that depends on python, flags:
   * --semi-standalone : don't copy the python framework into the app.
 Build on mac
 
-## 🎠 Usage 🔝
+## 🎠 Usage
 
-## ⚓ Config 🔝
+## ⚓ Config
 You can configure clipycards using a config file located in your home directory. This is the default config file:
+  
 ```json
 {
     "about": "version: 1.0 | dev: mohsilas | default themes: light, dark, rose-pine | need help with this config, or creating themes? visit clipycards.com",
@@ -77,16 +78,103 @@ Now, let's break it down :).
 
 * key: your OpenAI API key is stored here, I know it's practice to store it in an env, but if an adversary has access to your home dir, an API key is the least of your worries.
 * role: a model paramater that you shouldn't touch :)
-* main-model: the underlying AI that generates the cards' text.
-* sys_prompt: the prompt used to generate the cards, <br> is a line break.  <study_topic_context> is a general study context,  <similar_context> is replaced with the relevant context from previous cards.
+* main-model: the underlying AI that generates the cards' text. [Models list](https://platform.openai.com/docs/models)
+* sys_prompt: the prompt used to generate the cards, \<br> is a line break.  <study_topic_context> is a general study context,  <similar_context> is replaced with the relevant context from previous cards.
 * temp: A value between 0.2 and 0.8 can be effective. Lower values (e.g., 0.2) produce more focused and deterministic responses, while higher values (e.g., 0.8) allow for more randomness. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
 * top_p: Higher values (e.g., 0.9) make the model consider a broader range of possibilities, while lower values (e.g., 0.3) make it more selective. [souce](https://medium.com/nerd-for-tech/model-parameters-in-openai-api-161a5b1f8129)
 *  context_length: number of context chunks (previous cards/copied info) used to generate a single card.
 *  backend_thread_clipboard_queue_timeout: for those with some programming experience, this basically makes the backend thread wait n seconds for a new queue (new clipboard data).
-*  frontend_cards_export_format_separator: in accordince with the prompt, allows parsing the cards into a csv format.
-*  theme: there are three default themes / light, dark, rose-pine
+*  frontend_cards_export_format_separator: in accordince with the prompt, allows parsing the cards into a csv format. (i.e. question | answer = column1: question | column2: answer)
+*  theme: there are three default themes (light, dark, rose-pine), you can also create your own theme and insert the path here (e.g. "my\theme\path\mytheme.json").
 *  internet_ping_server: the IP and port of the internet server clipyCards pings to check connectivity, this one is google's.
-## 🖌️ Themes 🔝
+
+P.S. to find your home dir, type this on your terminal/cmd:
+```
+cd ~
+```
+## 🖌️ Themes
+There are three default themes: light, dark, rose-pine.
+To use your own theme, open the config file and replace the default theme with a path to your theme file (json file).
+
+<details>
+<summary>Click to see the default rose-pine theme json</summary>
+  
+```json
+{
+        "sys-mode": "dark",
+        "main-fg-color": "#191723",
+
+        "subwn-txt-color": "#E0DEF2",
+        "subwn-fg-color": "#191723",
+        "subwn-btn-color": "#BFA8E3",
+        "subwn-cancel-btn-color": "#BFA8E3",
+        "subwn-btn-txt-color": "#440000",
+        "subwn-btns-hover-color": "#E0DEF2",
+        "subwn-tarea-fg": "#191723",
+
+        "title-font": ["Times", 22],
+        "title-text-color": "white",
+        "title-fg-color": "#191723",
+        "title-corner-radius": 0,
+
+        "mframe-fg-color": "#191723",
+        "mframe-corner-radius": 0,
+        "mframe-border-width": 0,
+        "mframe-border-color": "white",
+        "mframe-scrlbar-fg-color": "#191723",
+        "mframe-scrlbar-hover-color": "#E0DEF2",
+        "mframe-scrlbar-btn-color": "#191723",
+
+        "cards-alt-colors": ["#252337", "#191723"],
+        "cards-corner-radius": 20,
+        "cards-font": ["Helvetica", 15],
+        "cards-txt-pady": 5,
+        "cards-txt-padx": 5,
+        "cards-txt-color": "#E0DEF2",
+        "card-btns-txt-color": "#E0DEF2",
+        "card-btns-hover-color": "#BFA8E3",
+        "card-btn-opts-icon": "⚙︎",
+        "cards-btn-icon-font": ["Helvetica", 20],
+
+        "footer-fg-color": "#191723",
+        "footer-corner-radius": 0,
+        "footer-border-width": 0,
+        "footer-border-color": "white",
+
+        "btn-export-txt-color": "#440000",
+        "btn-export-fg-color": "#BFA8E3",
+        "btn-export-hover-color": "#E0DEF2",
+        "btn-export-corner-radius": 5,
+        "btn-export-border-width": 1,
+        "btn-export-border-color": "#BFA8E3",
+
+        "btn-pause-txt-color": "#440000",
+        "btn-pause-fg-color": "#BFA8E3",
+        "btn-pause-hover-color": "#E0DEF2",
+        "btn-pause-corner-radius": 5,
+        "btn-pause-border-width": 1,
+        "btn-pause-border-color": "#BFA8E3",
+
+        "btn-ncontext-txt-color": "#440000",
+        "btn-ncontext-fg-color": "#BFA8E3",
+        "btn-ncontext-hover-color": "#E0DEF2",
+        "btn-ncontext-corner-radius": 5,
+        "btn-ncontext-border-width": 0,
+        "btn-ncontext-border-color": "#BFA8E3",
+
+        "optsmenu-fg-color": "#BFA8E3",
+        "optsmenu-text-color": "#440000",
+        "optsmenu-btn-color": "#BFA8E3",
+        "optsmenu-btn-hover-color": "#E0DEF2",
+        "optsmenu-btn-padding-color": "#BFA8E3",
+        "optsmenu-corner-radius": 5,
+        "optsmenu-border-width": 1,
+        "optsmenu-border-color": "#BFA8E3",
+
+        "wait-animation": ["⠁", "⠂", "⠄", "⡀", "⡈", "⡐", "⡠", "⣀", "⣁", "⣂", "⣄", "⣌", "⣔", "⣤", "⣥", "⣦", "⣮", "⣶", "⣷", "⣿", "⡿", "⠿", "⢟", "⠟", "⡛", "⠛", "⠫", "⢋", "⠋", "⠍", "⡉", "⠉", "⠑", "⠡", "⢁"]
+        }
+```
+</details>
 
 ## 📘 Documentation
 

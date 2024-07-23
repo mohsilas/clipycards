@@ -61,12 +61,16 @@ pip install numpy
 
 ### Building on MacOS/Windows
 After cloning or downloading the src file, there're many ways to build the python app. Here we use py2app/py2exe.
-1. install py2app with pip
+1. install py2app with pip for MacOS
 ```
 pip install py2app
 ```
+1.5 install p2exe if you're using windows
+```
+pip install py2exe
+```
 2. navigate to the src file
-3. run the build command
+3. run the build command (for MacOS, repace py2app with py2exe for windows)
 ```
 python setup.py py2app -O2 -S --semi-standalone
 ```

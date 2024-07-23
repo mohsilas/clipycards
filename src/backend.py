@@ -8,7 +8,7 @@ import numpy as np
 from os import path
 from time import sleep as wait
 from tkinter import messagebox as msgbox
-from openai import OpenAI, APIConnectionError
+from openai import OpenAI, APIConnectionError, AuthenticationError
 
 DIMENSIONS = 256 # size of a the embedding matrix - depends on what model you're using
 EMBEDDING_MODEL = "text-embedding-3-small"
@@ -90,6 +90,12 @@ def backend_api_object_create():
             #client = anthropic.Anthropic(api_key=config["key"])
         else:
             client = OpenAI(api_key=config["key"])
+            key = config["key"]
+            client.models.list()
+    except AuthenticationError:
+        msgbox.showerror("Authentaction Error", f"Your API key doesn't work, make sure it's correct in {config_file_path}\nOr visit OpenAI's dev portal to see if your usage expired")
+        db.log_critm(__name__, f"APIAuthenticationError -- api_key [{key}]")
+        exit()
     except Exception as e:
         db.log_crit(__name__, e, "Problem creating Openai client")
         exit()

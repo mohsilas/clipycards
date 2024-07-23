@@ -38,7 +38,7 @@ It is a truth universally acknowledged, at least among med students, that creati
 
 ## 🧱 Build
 After cloning or downloading the src file, there're many ways to build the python app. Here we use py2app/py2exe.
-### MacOS
+### MacOS/Windows
 1. install py2app with pip
 ```
 pip install py2app
@@ -177,6 +177,44 @@ To use your own theme, open the config file and replace the default theme with a
 </details>
 
 ## 📘 Documentation
+This is a fairly tiny app, hence the docs are short.
+### Docs table
+<details>
+<summary>Overview: how clipycards works</summary>
+  
+The following code represent the general structure of the app.
+```python
+frontend_clipboard_listener():
+  if new_clipboard_data != old_clipboard_data:
+    clipboard_queue.push(new_clipboard_data)
+    old_clipboard_data = new_clipboard_data
+    frontend_clipboard_listener() # I don't actualy use raw recursion, but the concept is the same.
 
+frontend_new_card_generated_listener():
+  if new_card_generated_queue.has_data():
+    gui.update.add_new_card(text=new_card_generated_queue.text)
+    frontend_new_card_generated_listener()
+
+backend_start_api_caller_theard():
+  while(thread_is_active.is_set()):
+    if clipboard_queue.has_data():
+      new_card_generated_queue.push(api.response(request=prompt+queue.get_data()))
+
+main():
+  frontend_clipboard_listener()
+  frontend_newcards_from_api_listener()
+  thread = backend_start_api_caller_theard()
+  thread.start()
+```
+</details>
+
+<details>
+<summary>The frontend </summary>
+
+I used [Customtkinter](https://customtkinter.tomschimansky.com/) for the GUI (which wasn't a great idea btw), and tkinter for the popup menu element. Theme theme is loaded either loaded from a the hardcoded default theme dict variable in the theme.py module, or from a .json file for custom themes. Then there classes are initiated in the frontend model (clipycards.py):
+* BridgeSharedHandles: holds the queues, vars, and thread events to allow communication with the backend (as pointed in the overview).
+* GuiAppMain: ctk class for the main window.
+* LargeTextInputDialog: ctk class for secondary windows.
+</details>
 ## 🎫 License
 This project falls under the [GNU general public license.](https://github.com/mohsilas/clipycards/blob/main/LICENSE)

@@ -52,7 +52,7 @@ def backend_config_file_validate(app, dialog_gui_class, loaded_config):
         config = loaded_config
         return True
     else:
-        api_dialog = dialog_gui_class(app, msg="Please provide an Openai API key.", geo="400x300", h=150,w=380)
+        api_dialog = dialog_gui_class(app, msg="Please provide an Openai API key.", win_title="API Key Needed", geo="400x300", h=150,w=380)
         app.wait_window(api_dialog)
         api_key = api_dialog.result
         #corp = backend_api_key_test(api_key)

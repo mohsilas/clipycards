@@ -83,7 +83,7 @@ This builds a relatively small app that depends on having python installed on ma
 <details>
 <summary>0. provide an OpenAI API key</summary>
   
-When you first run the app, it requires an API key to run. You can get it by signing up or loging with your free OpenAI account into [OpenAI Platform](https://platform.openai.com/account/api-keys) Remember to store it somewhere safe (like in a password manager). Then copy to ClipyCards welcome window as shown below (this is just an example of how an API key looks like):
+When you first run the app, it requires an API key to run. You can get it by signing up or loging with your free OpenAI account into [OpenAI Platform](https://platform.openai.com/account/api-keys) Remember to store it somewhere safe (like in a password manager). Then copy it to ClipyCards' welcome window as shown below (this is just an example of how an API key looks like):
   
 <img width="512" alt="Screenshot 2024-07-23 at 5 49 28 PM" src="https://github.com/user-attachments/assets/951db6f4-d977-40bf-8882-4608c601462c">
 

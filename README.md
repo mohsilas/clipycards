@@ -1,4 +1,3 @@
-<img width="512" alt="Screenshot 2024-07-23 at 5 49 08 PM" src="https://github.com/user-attachments/assets/5345cdef-a748-411b-b434-13dc4586af88"><img width="512" alt="Screenshot 2024-07-23 at 5 48 55 PM" src="https://github.com/user-attachments/assets/9ad67b5d-384a-4912-baa9-4c6bdd4b4169">
 <div align="center">
   <img src="https://github.com/user-attachments/assets/eed501b7-9b49-42a7-8e55-707df713c63e" width="300" />
 </div>
@@ -56,7 +55,8 @@ Build on mac
 ## 🎠 Usage
 <details>
 <summary>0. provide an OpenAI API key</summary>
-When you first run the app, it requires an API key to run. You can get it by signing up or loging with your free OpenAI account into [OpenAI Platform](https://platform.openai.com/account/api-keys). Remember to store it somewhere safe (like in a password manager). Then copy to ClipyCards welcome window as shown below.
+  
+When you first run the app, it requires an API key to run. You can get it by signing up or loging with your free OpenAI account into [OpenAI Platform](https://platform.openai.com/account/api-keys) Remember to store it somewhere safe (like in a password manager). Then copy to ClipyCards welcome window as shown below (this is just an example of how an API key looks like):
   
 <img width="512" alt="Screenshot 2024-07-23 at 5 49 28 PM" src="https://github.com/user-attachments/assets/951db6f4-d977-40bf-8882-4608c601462c">
 
@@ -67,12 +67,15 @@ When you first run the app, it requires an API key to run. You can get it by sig
 
 In order to keep the study session's general context, you have to provide a study context. i,e title of the topic and/or some overview snipt of the topic.
 Here, I just provided a title.
+
 <img width="712" alt="Screenshot 2024-07-23 at 5 53 25 PM" src="https://github.com/user-attachments/assets/dd7be026-0564-45dd-8b65-e8557aec0c99">
 
 </details>
 <details>
 <summary>2. Want a flashcard? Control+C... Done </summary>
+  
 Now you just study, and control+C whatever piece of info you want clipycards to generate a flashcard from. In This case, some info about kidney failure (I'm a medico!).
+
 <img width="932" alt="Screenshot 2024-07-23 at 5 58 16 PM" src="https://github.com/user-attachments/assets/59e83527-119b-4284-8bd0-0da0f221f2c4">
 
 </details>

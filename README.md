@@ -17,7 +17,7 @@
 # 📖 Table of Contents
 * [Intro](#-intro)
 * Installation
-* [Build](#-build)
+* [Build/dependancies](#-builddependancies)
 * [Usage](#-usage)
 * [Config](#-config)
 * [Themes](#-themes)
@@ -36,9 +36,31 @@ It is a truth universally acknowledged, at least among med students, that creati
 
 ## 🛠️ Installation
 
-## 🧱 Build
+## 🧱 Build/dependancies
+### dependancies
+* OpenAI (used version 1.30.3)
+```
+pip install openai
+```
+* FIASS (used version 1.8.0)
+```
+pip install faiss-cpu
+```
+* Pyperclip (used version 1.8.2)
+```
+pip install pyperclip
+```
+* Customtkinter (used version 5.2.2)
+```
+pip install customtkinter
+```
+* numpy (used version 1.22.0)
+```
+pip install numpy
+```
+
+### Building on MacOS/Windows
 After cloning or downloading the src file, there're many ways to build the python app. Here we use py2app/py2exe.
-### MacOS/Windows
 1. install py2app with pip
 ```
 pip install py2app

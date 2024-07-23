@@ -70,7 +70,7 @@ pip install py2app
 ```
 python setup.py py2app -O2 -S --semi-standalone
 ```
-This build a relatively small app that depends on python, flags:
+This builds a relatively small app that depends on having python installed on device, flags:
   * -O2 : optimize = 2.
   * --semi-standalone : don't copy the python framework into the app.
 Build on mac

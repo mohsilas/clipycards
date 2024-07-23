@@ -126,7 +126,7 @@ P.S. to find your home dir, type this on your terminal/cmd:
 ```
 cd ~
 ```
-## 🖌️Themes
+## 🖌️ Themes
 There are three default themes: light, dark, rose-pine.
 To use your own theme, open the config file and replace the default theme with a path to your theme file (json file).
 

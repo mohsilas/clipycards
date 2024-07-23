@@ -245,7 +245,7 @@ main():
 <details>
 <summary>The frontend (clipycards.py) </summary>
 
-I used [Customtkinter](https://customtkinter.tomschimansky.com/) for the GUI (which wasn't a great idea btw), and tkinter for the popup menu element. The theme (GUI color palatte) is either loaded from the a dictionary in the theme.py module, or from a .json file.
+I used [Customtkinter](https://customtkinter.tomschimansky.com/) for the GUI (which wasn't a great idea btw), and tkinter for the popup menu element. The theme (GUI color palatte) is either loaded from a dictionary in the theme.py module, or from a .json file.
 
 The frontend is the main module, and when it's executed, it runs a bunch of checks before starting the main window. If any of them failed, it exits(), popping an error msg and leaving some info in a log file.
 The checks are:

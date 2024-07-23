@@ -209,33 +209,36 @@ main():
 </details>
 
 <details>
-<summary>The frontend </summary>
+<summary>The frontend (clipycards.py) </summary>
 
-I used [Customtkinter](https://customtkinter.tomschimansky.com/) for the GUI (which wasn't a great idea btw), and tkinter for the popup menu element. Theme theme is loaded either loaded from a the hardcoded default theme dict variable in the theme.py module, or from a .json file for custom themes. Then there classes are initiated in the frontend model (clipycards.py):
-* BridgeSharedHandles: holds the queues, vars, and thread events to allow communication with the backend (as pointed in the overview).
-* GuiAppMain: ctk class for the main window.
-* LargeTextInputDialog: ctk class for secondary windows.
+I used [Customtkinter](https://customtkinter.tomschimansky.com/) for the GUI (which wasn't a great idea btw), and tkinter for the popup menu element. The theme (GUI color palatte) is either loaded from the a dictionary in the theme.py module, or from a .json file.
 
-The frontend runs a bunch of checks before starting the main window, if any of them failed, it exits popping an error msg and leaving some info in a log file.
+The frontend is the main module, and when it's executed, it runs a bunch of checks before starting the main window. If any of them failed, it exits(), popping an error msg and leaving some info in a log file.
 The checks are:
 * is the config file loaded and validated?
 * did the GUI initiate successfuly?
 * is there an internet connection?
 * does the api key work?
 * did the user provide a study context?
+
+There're three classes in the frontend:
+* BridgeSharedHandles: holds the queues, vars, and thread events to allow communication with the backend (as pointed in the overview).
+* GuiAppMain: ctk class for the main window.
+* LargeTextInputDialog: ctk class for secondary windows.
+
 </details>
 
 <details>
 <summary>The backend </summary>
   
-The backend uses backend_api_response_get() to get response from OpenAI's API, or other APIs in the future, as such it is called by:
+The backend uses backend_api_response_get(str)->str to get response from OpenAI's API, or other APIs in the future, as such it is called two functions:
 * backend_card_generate_from_data(str) -> str # this generates the cards according to the sys_prompt
 * backend_study_context_title_generate(str) -> str # this takes in the study context and provides a title
 
-With every API call, the functions responsible to keep context are also called (because LLMs like chatGPT don't have memory, so you'd have to feed the context with every call). These context funcions use methods from the (FAISS library](https://faiss.ai/) and [OpenAI's text embedding model](https://openai.com/index/introducing-text-and-code-embeddings/).
+With every API call, the functions responsible for keeping the context are also called (because LLMs don't have memory, so you'd have to feed them context with every API call). These context-keeping funcions use methods from (FAISS library](https://faiss.ai/) and the [OpenAI's text embedding model](https://openai.com/index/introducing-text-and-code-embeddings/).
 * backend_embedding_generate(str) -> embd # embd is a 1x256 np array of 32floats, not a real datatype btw. This one calls the embedding model.
-* backend_embedding_index_db_add(str) # adds str to database and calls backend_embedding_generate() to generate embedding and store it in the database with the str.
-* back_endembedding_index_db_search_similar(embd) -> list # searches the database for similar embeddings are outputs a list of their indexes (corrosponds to the i of the strings stored in the database).
+* backend_embedding_index_db_add(str) # calls backend_embedding_generate() to generate embedding and store it in a FIASS database, and appends the str to embedding_text_db (simple list).
+* back_endembedding_index_db_search_similar(embd) -> list # searches the FAISS database for similar embeddings are outputs a list of their indexes (corrosponds to the indexes of the strings in embedding_text_db).
 
 </details>
 

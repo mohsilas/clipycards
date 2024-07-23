@@ -35,9 +35,10 @@ It is a truth universally acknowledged, at least among med students, that creati
 **Don't want flashcards?** You can configure ClipyCards' prompt to generate bulletins, TLDR cards, QA sheets, etc,
 
 ## 🛠️ Installation
-
+No available releases yet... You'll have to follow the Build/dependancies guide it yourself.
 ## 🧱 Build/dependancies
 ### dependancies
+You'll need these libs already installed before building the app.
 * OpenAI (used version 1.30.3)
 ```
 pip install openai
@@ -65,7 +66,7 @@ After cloning or downloading the src file, there're many ways to build the pytho
 ```
 pip install py2app
 ```
-  1.5 install py2exe if you're using windows
+* install py2exe if you're using windows
 ```
 pip install py2exe
 ```

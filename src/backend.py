@@ -24,7 +24,7 @@ log_file_path = path.join(path.expanduser('~'), "clipycards.log")
 
 config = {}
 default_config = {
-    "about":"version: 1.0 | dev: mohsilas | default themes: light, dark, rose-pine | need help with this config, or creating themes? visit clipycards.com",
+    "about":"version: 1.0 | dev: mohsilas | default themes: light, dark, rose-pine | need help with this config, or creating themes? visit github.com/mohsilas/clipycards",
     #"anthropic(1)-or-openai(0)?": 1, # abandend, half-baked, feature (complicates the UX)
     "key":"<your_api_key>",
     "role": "system",

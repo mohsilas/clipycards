@@ -46,7 +46,7 @@ No available releases yet... You'll have to follow the Build/dependancies guide.
     * if it's not, you'll read something like "python doesn't exist" or "command not found". In this case you need to [download python](https://www.python.org/downloads/)
     * after downloading and installing python, type "python" and press enter.
     * next step is to exit from python, type "quit()" and then press enter.
-* now you'll need to download some code that the app depends on, follow the next guide (dependancies). You'll need it copy each command, paste it into the terminal or cmd, press enter, and wait for the dependancy to install before moving to the next one.
+* now you'll need to download some code that the app depends on, follow the next guide [dependancies](#dependancies) . You'll need it copy each command, paste it into the terminal or cmd, press enter, and wait for the dependancy to install before moving to the next one.
 * after installing the dependancies, download the source code from this github by clicking on the green button "<> Code", and Download ZIP.
 * last step, after uncompressing the ZIP, is navigating to the src folder and running the app.
   * to navigate, open the terminal/cmd app and type "cd " (with a space), then drag and drop the src folder inside the clipycards folder into the terminal/cmd window. This will print something like "cd computer/home/path/to/the/src", press enter and move to the next set.
@@ -183,6 +183,10 @@ Now, let's break it down :).
 > If you deleted the config file, clipycards will generate a new one and ask you for an API key. Also, to find your home dir, type this on your terminal/cmd:
 ```
 cd ~
+```
+then:
+```
+pwd
 ```
 ## 🪣 Themes
 There are three default themes: light, dark, rose-pine.

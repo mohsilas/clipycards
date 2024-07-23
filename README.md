@@ -70,7 +70,7 @@ pip install py2app
 pip install py2exe
 ```
 2. navigate to the src file
-3. run the build command (for MacOS, repace py2app with py2exe for windows)
+3. run the build command (for Windows, replace py2app with py2exe)
 ```
 python setup.py py2app -O2 -S --semi-standalone
 ```

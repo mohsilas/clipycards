@@ -44,7 +44,7 @@ After cloning or downloading the src file, there're many ways to build the pytho
 pip install py2app
 ```
 2. navigate to the src file
-3. run the builds command
+3. run the build command
 ```
 python setup.py py2app -O2 -S --semi-standalone
 ```

@@ -65,7 +65,7 @@ After cloning or downloading the src file, there're many ways to build the pytho
 ```
 pip install py2app
 ```
-1.5 install p2exe if you're using windows
+  1.5 install py2exe if you're using windows
 ```
 pip install py2exe
 ```

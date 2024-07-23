@@ -182,7 +182,7 @@ This is a fairly tiny app, hence the docs are short.
 <details>
 <summary>Overview: how clipycards works</summary>
   
-The following code represent the general structure of the app.
+The following psudocode represent the general structure of the app.
 ```python
 frontend_clipboard_listener():
   if new_clipboard_data != old_clipboard_data:
@@ -215,6 +215,29 @@ I used [Customtkinter](https://customtkinter.tomschimansky.com/) for the GUI (wh
 * BridgeSharedHandles: holds the queues, vars, and thread events to allow communication with the backend (as pointed in the overview).
 * GuiAppMain: ctk class for the main window.
 * LargeTextInputDialog: ctk class for secondary windows.
+
+The frontend runs a bunch of checks before starting the main window, if any of them failed, it exits popping an error msg and leaving some info in a log file.
+The checks are:
+* is the config file loaded and validated?
+* did the GUI initiate successfuly?
+* is there an internet connection?
+* does the api key work?
+* did the user provide a study context?
 </details>
+
+<details>
+<summary>The backend </summary>
+  
+The backend uses backend_api_response_get() to get response from OpenAI's API, or other APIs in the future, as such it is called by:
+* backend_card_generate_from_data(str) -> str # this generates the cards according to the sys_prompt
+* backend_study_context_title_generate(str) -> str # this takes in the study context and provides a title
+
+With every API call, the functions responsible to keep context are also called (because LLMs like chatGPT don't have memory, so you'd have to feed the context with every call). These context funcions use methods from the (FAISS library](https://faiss.ai/) and [OpenAI's text embedding model](https://openai.com/index/introducing-text-and-code-embeddings/).
+* backend_embedding_generate(str) -> embd # embd is a 1x256 np array of 32floats, not a real datatype btw. This one calls the embedding model.
+* backend_embedding_index_db_add(str) # adds str to database and calls backend_embedding_generate() to generate embedding and store it in the database with the str.
+* back_endembedding_index_db_search_similar(embd) -> list # searches the database for similar embeddings are outputs a list of their indexes (corrosponds to the i of the strings stored in the database).
+
+</details>
+
 ## 🎫 License
 This project falls under the [GNU general public license.](https://github.com/mohsilas/clipycards/blob/main/LICENSE)

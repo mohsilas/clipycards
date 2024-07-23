@@ -12,6 +12,7 @@
 
 
 > A tiny app that automatically creates flashcards from the clipbaord using GPT.
+> <p>Wanna turn <mark> this </mark> into a flashcard? Control+C... Done.</p>
 
 # 📖 Table of Contents
 * [Intro](#-intro)
@@ -122,7 +123,8 @@ Now, let's break it down :).
 *  theme: there are three default themes (light, dark, rose-pine), you can also create your own theme and insert the path here (e.g. "my\theme\path\mytheme.json").
 *  internet_ping_server: the IP and port of the internet server clipyCards pings to check connectivity, this one is google's.
 
-P.S. to find your home dir, type this on your terminal/cmd:
+> [!TIP]
+> to find your home dir, type this on your terminal/cmd:
 ```
 cd ~
 ```

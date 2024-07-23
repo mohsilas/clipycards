@@ -271,11 +271,11 @@ backend_card_generate_from_data(str: request, str:study_topic_context) -> [str, 
 backend_study_context_title_generate(str: study_topic_context) -> str # this takes in the study context and provides a title
 ```
 
-With every API call, the functions responsible for keeping the context are also called (because LLMs don't have memory, so you'd have to feed them context with every API call). These context-keeping funcions use methods from (FAISS library](https://faiss.ai/) and the [OpenAI's text embedding model](https://openai.com/index/introducing-text-and-code-embeddings/).
+With every API call, the functions responsible for keeping the context are also called (because LLMs don't have memory, so you'd have to feed them context with every API call). These context-keeping funcions use methods from [FAISS library](https://faiss.ai/) and the [OpenAI's text embedding model](https://openai.com/index/introducing-text-and-code-embeddings/).
 ```python
 backend_embedding_generate(str: text) -> embd # embd is a 1x256 np array of 32floats, not a real datatype btw. This one calls the embedding model.
 backend_embedding_index_db_add(str: text) -> None # calls backend_embedding_generate() to generate embedding and store it in a FIASS database, and appends the str to embedding_text_db (simple list).
-back_endembedding_index_db_search_similar(embd: text_embedding) -> list # searches the FAISS database for similar embeddings are outputs a list of their indexes (corrosponds to the indexes of the strings in embedding_text_db).
+back_endembedding_index_db_search_similar(embd: text_embedding) -> list # searches the FAISS database for similar embeddings, gets their indexes, and uses the indexes to return a list of similar texts from embedding_text_db (something like, [embedding_text_db[i] for index in indexes]).
 ```
 
 </details>
